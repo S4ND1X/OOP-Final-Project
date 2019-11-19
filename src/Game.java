@@ -14,20 +14,18 @@ public class Game extends Canvas implements Runnable{
 	
 	private Thread thread;
 	private boolean running = false;
-	
 	private Handler handler;
 	
 	public Game() {
-		///Crear ventana nueva
-		new Window(WIDTH,HEIGHT,"Cornville", this);
-		
 		this.handler = new Handler();
+		this.addKeyListener(new KeyInput(this.handler));
+		//Crear ventana nueva
+		new Window(WIDTH,HEIGHT,"Cornville", this);
 		
 		Random ran = new Random();
 		
-		for(int i = 0; i < 15; i++) {
-			this.handler.addGameObject(new Player(ran.nextInt(WIDTH),ran.nextInt(HEIGHT),ID.Player));	
-		}
+		this.handler.addGameObject(new Player(ran.nextInt(WIDTH),ran.nextInt(HEIGHT),ID.Player));	
+		
 		
 	}
 
