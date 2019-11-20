@@ -18,29 +18,28 @@ public class KeyInput extends KeyAdapter {
 	//Obtiene el codigo ASCII de la tecla
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();	
-		for(int i = 0; i < this.handler.gameObjects.size(); i++) {
-			GameObject tempObject = this.handler.gameObjects.get(i);			
-			if(tempObject.getId() == ID.Player) {
+		for(GameObject tempObject : this.handler.gameObjects) {		
+			if(tempObject.getId() == ID.Player){
 				//Eventos para el jugador 1				
 				if(key == KeyEvent.VK_W) 
 				{
 					uP = true;
-					tempObject.setVelY(-3);
+					tempObject.setVelY(-5);
 				}
 				if(key == KeyEvent.VK_S) 
 				{
 					dP = true;
-					tempObject.setVelY(3);
+					tempObject.setVelY(5);
 				}
 				if(key == KeyEvent.VK_D) 
 				{
 					rP = true;
-					tempObject.setVelX(3);
+					tempObject.setVelX(5);
 				}
 				if(key == KeyEvent.VK_A) 
 				{
 					lP = true;
-					tempObject.setVelX(-3);
+					tempObject.setVelX(-5);
 				}
 			}
 		}
@@ -50,11 +49,9 @@ public class KeyInput extends KeyAdapter {
 		int key = e.getKeyCode();
 		//Obtiene el valor ascci de la tecla soltada
 		//Si el bojeto es un jugador, se dejara de mover
-		for(int i = 0; i < this.handler.gameObjects.size(); i++) {
-			GameObject tempObject = this.handler.gameObjects.get(i);			
+		for(GameObject tempObject : this.handler.gameObjects) {		
 			if(tempObject.getId() == ID.Player) {
 				//Eventos para el jugador 1	
-				
 				if(key == KeyEvent.VK_W) 
 				{
 					uP = false;

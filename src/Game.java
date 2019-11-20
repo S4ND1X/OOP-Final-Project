@@ -9,7 +9,7 @@ public class Game extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = -1442798787354930462L;
 	
-	public static final int WIDTH = 640, 
+	public static final int WIDTH = 1080, 
 							HEIGHT = WIDTH / 12 * 9;
 	
 	private Thread thread;
@@ -99,6 +99,13 @@ public class Game extends Canvas implements Runnable{
 		g.dispose();
 		bs.show();
 		
+	}
+	
+	// Metodo para restringir el movimiento
+	public static int clamp(int var, int min, int max) {
+		if(var >= max) { return var = max; }
+		else if( var <= min) { return var = min; } 
+		else { return var; }
 	}
 	
 	
