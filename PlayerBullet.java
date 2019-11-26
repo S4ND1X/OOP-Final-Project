@@ -4,12 +4,12 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 
-public class Shot extends GameObject {
+public class PlayerBullet extends GameObject {
 
     private Handler handler;
     private Random rand = new Random();
 
-    public Shot(int x, int y, ID id, Handler handler){
+    public PlayerBullet(int x, int y, ID id, Handler handler){
         super(x, y, id);
 
         this.handler = handler;
@@ -42,12 +42,12 @@ public class Shot extends GameObject {
     
     //TODO preguntar a salinas
     public void collission() {
+    	int bulletDamage = 4;
     	for(int i = 0; i < this.handler.object.size(); i++) {
     		GameObject tempObject = this.handler.object.get(i);
-    		if(tempObject.getID() == ID.BossEnemy) {
+    		if(tempObject.getID() == ID.BossEnemy || tempObject.getID() == ID.Boss1 || tempObject.getID() == ID.WeakBoss) {
         		if(getBounds().intersects(tempObject.getBounds())){
-                    tempObject.setHealth(tempObject.getHealth() - 2);
-                    System.out.println("Colisione");
+                    tempObject.setHealth(tempObject.getHealth() - bulletDamage);
                     handler.removeObject(this);
                 }
     		}

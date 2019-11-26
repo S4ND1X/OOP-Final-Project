@@ -5,16 +5,7 @@ import java.awt.*;
 public class Handler {
     //We create a list for the game objects since we don't know how many we are going to have
     LinkedList<GameObject> object = new LinkedList<GameObject>();
-    private int level = 0;
 
-    
-    public void setLevel(int level) {
-    	this.level = level;
-    }
-    
-    public int getLevel() {
-    	return this.level;
-    }
 
     public void tick(){
         for (int i = 0; i < object.size(); i++) {

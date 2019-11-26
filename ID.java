@@ -8,14 +8,17 @@ public enum ID {
     FatEnemy(),
     FastEnemy(),
     SmartEnemy(),
-    BossEnemy(),
     //Bosses
     Boss1(),
+    BulletBoss1(),
     WeakBoss(),
     FastBoss(),
+    BossEnemyBullets(),
+    BossEnemy(),
     //Tokens 
     HealthToken(),
-    BossEnemyBullets(),
     //attacks
-    Shot();
+    PlayerBullet(),
+    //Dummy
+    Dummy();
 }

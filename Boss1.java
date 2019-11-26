@@ -9,15 +9,13 @@ public class Boss1 extends GameObject {
 
     private Handler handler;
     private Random rand = new Random();
-    private int health = 25;
-
     private int timer = 80;
     private int timer2 = 50;
 
     public Boss1(int x, int y, ID id, Handler handler){
         super(x, y, id);
         this.handler = handler;
-
+        this.health = 100;
         velX = 0; 
         velY = 2;
     }
@@ -42,7 +40,6 @@ public class Boss1 extends GameObject {
         if (x <= 0 || x >= Game.WIDTH - 128) velX *= -1;
 
         //Damaging the boss
-        collission();
         if (health <= 0) {
             handler.clearEnemies();
         }
@@ -57,19 +54,6 @@ public class Boss1 extends GameObject {
     @Override
     public Rectangle getBounds(){
         return new Rectangle(x,y,128,128);
-    }
-
-    private void collission(){
-        for (int i = 0; i < handler.object.size(); i++) {
-            GameObject tempObject = handler.object.get(i);
-
-            if (tempObject.getID() == ID.Shot) { 
-                if(getBounds().intersects(tempObject.getBounds())) {
-                    health-= 1;
-                    handler.removeObject(tempObject);
-                }
-            }
-        }
     }
     
 }

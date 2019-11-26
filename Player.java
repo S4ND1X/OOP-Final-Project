@@ -32,9 +32,8 @@ public class Player extends GameObject {
         if (wait > 0) {
             wait--;
         }
-        
         if (shoot == 1 && wait == 0) {
-            handler.addObject(new Shot((int)x + 8, (int)y + 8, ID.Shot, handler));
+            handler.addObject(new PlayerBullet((int)x + 8, (int)y + 8, ID.PlayerBullet, handler));
             wait += 7;
         }
     }
@@ -79,8 +78,7 @@ public class Player extends GameObject {
 
     @Override
     public void render(Graphics g){
-        if(id == ID.Player) g.setColor(Color.GREEN);
-        // else if (id == ID.Player2) g.setColor(Color.ORANGE);
+        g.setColor(Color.GREEN);
         g.fillRect(x,y,32,32);
     }
     

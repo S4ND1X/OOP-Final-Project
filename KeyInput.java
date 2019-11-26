@@ -28,7 +28,9 @@ public class KeyInput extends KeyAdapter {
                 if (key == KeyEvent.VK_S) { tempObject.setVelY(5); KeyDown[1] = true; }
                 if (key == KeyEvent.VK_D) { tempObject.setVelX(5); KeyDown[2] = true; }
                 if (key == KeyEvent.VK_A) { tempObject.setVelX(-5); KeyDown[3] = true; }
-                if (key == KeyEvent.VK_UP) tempObject.setShooting(1); 
+                if (key == KeyEvent.VK_UP) {
+                	tempObject.setShooting(1);
+                }
             } //else if (tempObject.getID() == ID.Player2) {
             
             //     if (key == KeyEvent.VK_UP) tempObject.setVelY(-5);

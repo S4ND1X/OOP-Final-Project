@@ -9,8 +9,7 @@ public class BossEnemy extends GameObject {
 	private Handler handler;
 	private int timer = 120;
 	private int timer2= 60;
-	private int numBullets = 0;
-	Random r = new Random();
+	private Random ran;
 
 	
 	
@@ -21,6 +20,7 @@ public class BossEnemy extends GameObject {
 		velX = -2;
 		velY = 0;
 		this.health = 100;
+		this.ran = new Random();
 	}	
 	
 	public Rectangle getBounds() {
@@ -43,17 +43,15 @@ public class BossEnemy extends GameObject {
 			if(velY == 0)velY = 5;
 			//Aumentar su velocidad progresivamente 
 			//Spawnear random si es 0
-			int spawn = r.nextInt(5);
+			int spawn = this.ran.nextInt(5);
 			if(spawn == 0) {
 				//Se spawnea una nueva bala
 				handler.addObject(new BossEnemyBullet((int)x + 64 , (int)y + 64, ID.BossEnemyBullets, handler));
-				//Se suma uno al contador de balas
-				numBullets++;
 			}
 			//Si ya disparo X balas, desaparece
 			if(this.health <= 0) {
 				this.handler.removeObject(this);
-				this.handler.setLevel(this.handler.getLevel()+1);
+				this.handler.clearEnemies();
 			}
 			System.out.println(this.health);
 			

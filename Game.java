@@ -26,7 +26,7 @@ public class Game extends Canvas implements Runnable {
     public Game() {
         handler = new Handler();
         hud = new HUD();
-
+      
         spawner = new Spawn(handler, hud);
 
         this.addKeyListener((KeyListener) new KeyInput(handler));
@@ -34,13 +34,7 @@ public class Game extends Canvas implements Runnable {
 
         //*Players and First Enemies 
         handler.addObject(new Player(WIDTH / 2, HEIGHT / 2, ID.Player, handler));
-        // handler.addObject(new WeakBoss((WIDTH / 2), 50, ID.WeakBoss, handler));
-        // handler.addObject(new Boss1((WIDTH / 2 ) - 50, -120, ID.Boss1, handler));
-        //handler.addObject(new BasicEnemy(rand.nextInt(Game.WIDTH - 50), rand.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
-        //handler.addObject(new FastEnemy(rand.nextInt(Game.WIDTH - 50), rand.nextInt(Game.HEIGHT - 50), ID.FastEnemy, handler));
-        //handler.addObject(new FatEnemy(rand.nextInt(Game.WIDTH - 50), rand.nextInt(Game.HEIGHT - 50), ID.FatEnemy, handler));
-        handler.addObject(new BossEnemy(Game.WIDTH + 100 , 0 + 50, ID.BossEnemy, handler));
-        handler.addObject(new BasicEnemy(rand.nextInt(Game.WIDTH - 50), rand.nextInt(Game.HEIGHT - 50), ID.BasicEnemy, handler));
+        handler.addObject(new Dummy(2000,2000,ID.Dummy, handler));
     }
 
     public synchronized void start() {
