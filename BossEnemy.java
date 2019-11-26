@@ -1,4 +1,3 @@
-package com.miko.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -19,8 +18,9 @@ public class BossEnemy extends GameObject {
 	public BossEnemy(int x, int y, ID id, Handler handler) {
 		super(x, y, id);			
 		this.handler = handler;		
-		velX = 0;
-		velY = 2;
+		velX = -2;
+		velY = 0;
+		this.health = 100;
 	}	
 	
 	public Rectangle getBounds() {
@@ -34,16 +34,16 @@ public class BossEnemy extends GameObject {
 		y += velY;
 		
 		//Ir bajando en la pantalla y detenerse
-		if(timer <= 0)velY = 0;
+		if(timer <= 0)velX = 0;
 		else timer--;
 		//Si ya se detuvo empieza el otro contador
 		if(timer <= 0)timer2--;
 		//Si ya se detuvo unos momentos empezara a moverse a los lados y  rebotar
 		if(timer2 <= 0) {
-			if(velX == 0)velX = 10;
+			if(velY == 0)velY = 5;
 			//Aumentar su velocidad progresivamente 
 			//Spawnear random si es 0
-			int spawn = r.nextInt(3);
+			int spawn = r.nextInt(5);
 			if(spawn == 0) {
 				//Se spawnea una nueva bala
 				handler.addObject(new BossEnemyBullet((int)x + 64 , (int)y + 64, ID.BossEnemyBullets, handler));
@@ -51,22 +51,27 @@ public class BossEnemy extends GameObject {
 				numBullets++;
 			}
 			//Si ya disparo X balas, desaparece
-			if(numBullets >= 200)handler.removeObject(this);
+			if(this.health <= 0) {
+				this.handler.removeObject(this);
+				this.handler.setLevel(this.handler.getLevel()+1);
+			}
+			System.out.println(this.health);
 			
 		}
 		
 		//Hacer que los enemigo reboten
 		//if(y <= 0 || y >= Game.HEIGHT - 128) velY *= -1;		
-		if(x <= 0 || x >= Game.WIDTH - 128) velX *= -1;
+		if(y <= 0 || y >= Game.HEIGHT - 128) velY *= -1;
 		
 		//Crear la sombra
-		handler.addObject(new Trail((int)x,(int) y, ID.Trail, new Color(235, 112, 116), 128, 128, 0.08f, handler ));
-		
+		//handler.addObject(new Trail((int)x,(int) y, ID.Trail, new Color(235, 112, 116), 128, 128, 0.08f, handler ));
+
 	}
 	//Crear elemento grafico
 	public void render(Graphics g) {
-		g.setColor(new Color(235, 112, 116));		
+		g.setColor(new Color(156, 209, 255));		
 		g.fillRect((int)x,(int) y, 128, 128);
 	} 
-
+	
+			
 }

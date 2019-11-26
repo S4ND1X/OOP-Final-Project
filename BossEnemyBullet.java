@@ -1,4 +1,4 @@
-package com.miko.main;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -16,12 +16,12 @@ public class BossEnemyBullet extends GameObject {
 		super(x, y, id);			
 		this.handler = handler;	
 		//Velocidad random de -5 a 5
-		velX = (r.nextInt(5 - -5) + -5);
-		velY = 5;
+		velX = -5;
+		velY = r.nextInt(3 - -3) + -3;
 	}	
 	
 	public Rectangle getBounds() {
-		//Regresa un cuadrado para saber en que posicion esta a la hora de colisionar
+		//Regresa un cuadrado para saber en que posición está a la hora de colisionar
 		return new Rectangle((int)x, (int) y, 16, 16);	
 	}
 	
@@ -36,7 +36,7 @@ public class BossEnemyBullet extends GameObject {
 		if(y >= Game.HEIGHT)handler.removeObject(this);
 		
 		//Crear la sombra
-		handler.addObject(new Trail((int)x,(int) y, ID.Trail, Color.white, 16, 16, 0.09f, handler ));
+		//handler.addObject(new Trail((int)x,(int) y, ID.Trail, Color.white, 16, 16, 0.09f, handler ));
 		
 	}
 	//Crear elemento grafico
