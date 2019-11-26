@@ -18,6 +18,8 @@ public class Boss1 extends GameObject {
         this.health = 100;
         velX = 0; 
         velY = 2;
+        
+        this.color = new Color(130,232,211,91);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Boss1 extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.RED);
+        g.setColor(color);
         g.fillRect(x, y, 128, 128);
     }
 
@@ -55,5 +57,21 @@ public class Boss1 extends GameObject {
     public Rectangle getBounds(){
         return new Rectangle(x,y,128,128);
     }
+
+	@Override
+	public void setColorHit() {
+		int r = this.color.getRed(),g = this.getColor().getGreen(), b = this.getColor().getBlue();
+		r*=0.95;
+		g*=0.95;
+		b*=0.95;
+		this.color = new Color(r,g,b);
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

@@ -12,6 +12,7 @@ public class WeakBoss extends GameObject {
         super(x, y, id);
         this.handler = handler; 
         this.health = 1;
+        this.color = new Color(130,232,211,91);
     }
 
     @Override
@@ -29,8 +30,20 @@ public class WeakBoss extends GameObject {
 
     @Override
     public void render(Graphics g){
-        g.setColor(Color.YELLOW);
+        g.setColor(color);
         g.fillRect(x,y,96,96);
     }
+
+	@Override
+	public void setColorHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

@@ -1,8 +1,11 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.Random;
+
+import javafx.scene.shape.Circle;
 
 
 public class BossEnemyBullet extends GameObject {
@@ -43,6 +46,18 @@ public class BossEnemyBullet extends GameObject {
 	public void render(Graphics g) {
 		g.setColor(Color.white);		
 		g.fillRect((int)x,(int) y, 16, 16);
-	} 
+	}
+
+	@Override
+	public void setColorHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

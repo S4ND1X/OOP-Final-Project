@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.Random;
 
 
+
 public class PlayerBullet extends GameObject {
 
     private Handler handler;
@@ -30,7 +31,7 @@ public class PlayerBullet extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.CYAN);
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(x, y, 10, 10);
     }
 
@@ -48,11 +49,26 @@ public class PlayerBullet extends GameObject {
     		if(tempObject.getID() == ID.BossEnemy || tempObject.getID() == ID.Boss1 || tempObject.getID() == ID.WeakBoss) {
         		if(getBounds().intersects(tempObject.getBounds())){
                     tempObject.setHealth(tempObject.getHealth() - bulletDamage);
+                    tempObject.setColorHit();
                     handler.removeObject(this);
                 }
     		}
 
     	}
     }
+
+	@Override
+	public void setColorHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
     
 }

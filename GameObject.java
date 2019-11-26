@@ -1,4 +1,5 @@
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
@@ -10,6 +11,7 @@ public abstract class GameObject {
     protected int velX, velY;
     protected int shoot;
     protected int health;
+    protected Color color;
 
     public GameObject(int x, int y, ID id) {
         this.x = x;
@@ -20,7 +22,15 @@ public abstract class GameObject {
     public abstract void tick();
     public abstract void render(Graphics g);
     public abstract Rectangle getBounds();
-
+    public abstract void setColorHit();
+    public abstract void setColorHealed();
+    
+    public void setColor(Color color) {
+    	this.color = color;
+    }
+    public Color getColor() {
+    	return this.color;
+    }
     public void setX(int x) {
         this.x = x;
     }

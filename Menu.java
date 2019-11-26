@@ -70,14 +70,14 @@ public class Menu extends MouseAdapter {
 	if(game.gameState == Game.STATE.Menu) {
 		g.setFont(new Font("arial", 1, 100));	
 		g.setColor(Color.white);
-		g.drawString("CUBIK", 385, 230);
+		g.drawString("Geometry Wars", 200, 230);
 		
 		Font font = new Font("arial", 1, 50);
 		//Play Button
 		
 			g.setFont(font);
 			g.setColor(Color.magenta);
-			g.drawString("PLAY", 475, 380);
+			g.drawString("Jugar", 475, 380);
 			
 			g.setColor(Color.white);
 			g.drawRect(390, 310, 300, 100);
@@ -86,7 +86,7 @@ public class Menu extends MouseAdapter {
 		
 			g.setFont(font);
 			g.setColor(Color.cyan);
-			g.drawString("CREDITS", 435, 530);
+			g.drawString("Creditos", 435, 530);
 			
 			
 			g.setColor(Color.white);
@@ -96,7 +96,7 @@ public class Menu extends MouseAdapter {
 		
 			g.setFont(font);
 			g.setColor(Color.pink);
-			g.drawString("QUIT", 475, 680);
+			g.drawString("Salir", 475, 680);
 			
 			g.setColor(Color.white);
 			g.drawRect(390, 610, 300, 100);

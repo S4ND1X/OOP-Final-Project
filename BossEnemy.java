@@ -1,7 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.Random;
+
 
 
 public class BossEnemy extends GameObject {
@@ -10,7 +12,6 @@ public class BossEnemy extends GameObject {
 	private int timer = 120;
 	private int timer2= 60;
 	private Random ran;
-
 	
 	
 	//Valores Iniciales
@@ -21,6 +22,7 @@ public class BossEnemy extends GameObject {
 		velY = 0;
 		this.health = 100;
 		this.ran = new Random();
+		this.color = new Color(156,209,255);
 	}	
 	
 	public Rectangle getBounds() {
@@ -57,6 +59,7 @@ public class BossEnemy extends GameObject {
 			
 		}
 		
+		
 		//Hacer que los enemigo reboten
 		//if(y <= 0 || y >= Game.HEIGHT - 128) velY *= -1;		
 		if(y <= 0 || y >= Game.HEIGHT - 128) velY *= -1;
@@ -67,9 +70,23 @@ public class BossEnemy extends GameObject {
 	}
 	//Crear elemento grafico
 	public void render(Graphics g) {
-		g.setColor(new Color(156, 209, 255));		
+		g.setColor(color);		
 		g.fillRect((int)x,(int) y, 128, 128);
-	} 
-	
+	}
+
+	public void setColorHit() {
+		int r = this.color.getRed(),g = this.getColor().getGreen(), b = this.getColor().getBlue();
+		r*=0.95;
+		g*=0.95;
+		b*=0.95;
+		this.color = new Color(r,g,b);
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
+
 			
 }

@@ -57,7 +57,7 @@ public class Spawn {
         if (timer <= 0) {
             handler.addObject(new  HealthToken(rand.nextInt(Game.WIDTH - 50), 25, ID.HealthToken, handler));
             timer = 100; 
-            int randNum = rand.nextInt((7-3)+1)+ 3;
+            int randNum = rand.nextInt(3);
             timer *= randNum;
         }
         else timer--;
