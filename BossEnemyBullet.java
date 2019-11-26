@@ -1,11 +1,9 @@
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import javafx.scene.shape.Circle;
 
 
 public class BossEnemyBullet extends GameObject {
@@ -21,6 +19,8 @@ public class BossEnemyBullet extends GameObject {
 		//Velocidad random de -5 a 5
 		velX = -5;
 		velY = r.nextInt(3 - -3) + -3;
+		
+		this.color = new Color(255,233,181);
 	}	
 	
 	public Rectangle getBounds() {
@@ -44,8 +44,8 @@ public class BossEnemyBullet extends GameObject {
 	}
 	//Crear elemento grafico
 	public void render(Graphics g) {
-		g.setColor(Color.white);		
-		g.fillRect((int)x,(int) y, 16, 16);
+		g.setColor(color);		
+		g.fillOval((int)x,(int) y, 16, 16);
 	}
 
 	@Override

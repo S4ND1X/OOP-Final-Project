@@ -10,7 +10,7 @@ public class HealthToken extends GameObject {
     private Handler handler;
     private Random rand = new Random();
 
-    private int timer = 100;
+    private int timer = 50;
 
     public HealthToken(int x, int y, ID id, Handler handler){
         super(x, y, id);
@@ -19,28 +19,45 @@ public class HealthToken extends GameObject {
 
         velX = 0; 
         velY = 3;
+        
+        this.color = new Color(235,78,153);
     }
 
     @Override
     public void tick(){
-        
 
         x += velX;
         y += velY;
 
         if(y >= Game.HEIGHT) handler.removeObject(this);
+        
+        
+        
+        
 
     }
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.ORANGE);
-        g.fillRect(x, y, 10, 10);
+        g.setColor(color);
+        g.drawArc(x, y, 10, 20, 0, 180);
     }
 
     @Override
     public Rectangle getBounds(){
-        return new Rectangle(x,y,10,10);
+        return new Rectangle(x,y,10,20);
     }
+
+	@Override
+	public void setColorHit() {
+
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+
+		
+	}
     
 }

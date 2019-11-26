@@ -29,13 +29,25 @@ public class BasicEnemy extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(x, y, 16, 16);
+        g.setColor(Color.pink);
+        g.fillOval(x, y, 16, 16);
     }
 
     @Override
     public Rectangle getBounds(){
         return new Rectangle(x,y,16,16);
     }
+
+	@Override
+	public void setColorHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }
