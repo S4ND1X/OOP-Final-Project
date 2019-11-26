@@ -15,6 +15,8 @@ public class FastEnemy extends GameObject {
 
         velX = 2; 
         velY = 9;
+        
+        this.color = new Color(255,233,181);
     }
 
     @Override
@@ -29,7 +31,7 @@ public class FastEnemy extends GameObject {
 
     @Override
     public void render(Graphics g) {
-        g.setColor(Color.ORANGE);
+        g.setColor(color);
         g.fillRect(x, y, 16, 16);
     }
 
@@ -37,5 +39,21 @@ public class FastEnemy extends GameObject {
     public Rectangle getBounds(){
         return new Rectangle(x,y,16,16);
     }
+
+	@Override
+	public void setColorHit() {
+		int r = this.color.getRed(),g = this.getColor().getGreen(), b = this.getColor().getBlue();
+		r*=0.95;
+		g*=0.95;
+		b*=0.95;
+		this.color = new Color(r,g,b);
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

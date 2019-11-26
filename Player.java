@@ -113,6 +113,7 @@ public class Player extends GameObject {
 			this.color = new Color(r,g,b);
 		}
 		
+		
 	}
     
 }

@@ -36,7 +36,11 @@ public class WeakBoss extends GameObject {
 
 	@Override
 	public void setColorHit() {
-		// TODO Auto-generated method stub
+		int r = this.color.getRed(),g = this.getColor().getGreen(), b = this.getColor().getBlue();
+		r*=0.95;
+		g*=0.95;
+		b*=0.95;
+		this.color = new Color(r,g,b);
 		
 	}
 
