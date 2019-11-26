@@ -1,6 +1,16 @@
-public enum ID {
+package com.miko.main;
 
+public enum ID {
+	
 	Player(),
-	BasicEnemy();
+	BasicEnemy(),
+	FastEnemy(),
+	SmartEnemy(),
+	BossEnemy(),
+	BossEnemyBullets(),
+	MenuParticle(),
+	MenuParticle2(),
+	MenuParticle3(),
+	Trail();
 	
 }

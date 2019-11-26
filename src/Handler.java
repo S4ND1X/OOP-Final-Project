@@ -1,32 +1,53 @@
+package com.miko.main;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+import com.miko.main.Game.STATE;
+
 public class Handler {
 
-	//Lista ligada que almacena todos los objetos
-	LinkedList <GameObject> gameObjects = new LinkedList<GameObject>();
-
-	//Metodo para llamar al tick de todos los objetos
+	//Crear Lista Ligada
+	LinkedList <GameObject> object = new LinkedList<GameObject>();	
+	/*Actualiza y renderiza todos los objetos que haya en escena */	
 	public void tick() {
-		//Tick todos los objetos
-		for(GameObject tempGO : gameObjects) {
-			tempGO.tick();
+		//Obtiene cada elemento en pantalla
+		for(int i = 0; i < object.size(); i++) {
+			GameObject tempObject = object.get(i);
+			//Actualiza ese objeto
+			tempObject.tick();
 		}
-	}
-
-	//Metodo para hacer render de todos los objetos
+	}	
+	
 	public void render(Graphics g) {
-		//Renderizar todos los objetos
-		for(GameObject tempGO : gameObjects) {
-			tempGO.render(g);
+		//Obtiene cada elemento en pantalla
+		for(int i = 0; i < object.size(); i++) {
+			GameObject tempObject = object.get(i);
+			//Hace su nuevo render
+			tempObject.render(g);
 		}
 	}
-	//Metodo para agregar un objeto al juego
-	public void addGameObject(GameObject gameObject) {
-		this.gameObjects.add(gameObject);
+	
+	//Borrar Enemigos
+	public void clearEnemys() {
+		for(int i = 0; i < object.size(); i++) {
+			GameObject tempObject = object.get(i);
+			if(tempObject.getID() != ID.Player) {
+				removeObject(tempObject);
+				i--;
+			}
+			else if(Game.gameState == Game.STATE.End) {
+				object.clear();
+			}
+				
+		}
 	}
-	//Metodo para remover un objeto al juego
-	public void removeGameObject(GameObject gameObject) {
-		this.gameObjects.remove(gameObject);
+	
+	//Agregar objeto
+	public void addObject(GameObject object) {
+		this.object.add(object);
+	}
+	//Quitar Elemento
+	public void removeObject(GameObject object) {
+		this.object.remove(object);
 	}
 }

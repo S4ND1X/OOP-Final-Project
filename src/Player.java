@@ -1,46 +1,72 @@
+package com.miko.main;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Player extends GameObject {
-	
-	private int enemySize;
-	private Handler handler;
 
+public class Player extends GameObject {
+	Handler handler;
+	//Valores Iniciales
 	public Player(int x, int y, ID id, Handler handler) {
 		super(x, y, id);
-		this.enemySize = 32;
 		this.handler = handler;
 	}
-
-	@Override
+	
+	public Rectangle getBounds() {
+		return new Rectangle((int)x, (int)y, 32, 32);
+	}
+	
+	
+	//Elementos a actualizar
 	public void tick() {
-		this.x += velX;
-		this.y += velY;
+		x += velX;
+		y += velY;		
 		
-		x = Game.clamp(x, 0, Game.WIDTH - this.enemySize);
-		y = Game.clamp(y, 0, Game.HEIGHT - this.enemySize * 2);
+		//Restringir movimiento en la pantalla
+		x = Game.clamp(x, 0, Game.WIDTH - 38);
+		y = Game.clamp(y, 0, Game.HEIGHT - 68);
 		
+		//Crear sombra
+		handler.addObject(new Trail(x,y, ID.Trail,new Color(156, 49, 255), 32, 32, 0.1f, handler));
+		//Checar por colisiones
 		collision();
+		
 	}
 	
 	private void collision() {
-		for(GameObject tempGameObject : this.handler.gameObjects) {
-			if(getBounds().intersects(tempGameObject.getBounds()) && tempGameObject.getId() == ID.BasicEnemy) {
-				System.out.println("Collision of " + tempGameObject + " with " + this);
-			}
+		for(int i = 0; i < handler.object.size(); i++) {
+			//Aux para recorrer
+			GameObject tempObject = handler.object.get(i);
+			//Depende el enemigo se aplica diferente efecto
+			switch(tempObject.getID()) {	
+				//Si es colisiono con el enemigo se aplica un efecto
+				case BasicEnemy:
+					if(this.getBounds().intersects(tempObject.getBounds()))HUD.HEALTH -=1;					
+					break;					
+				case FastEnemy:
+					if(this.getBounds().intersects(tempObject.getBounds()))HUD.HEALTH -=8;					
+					break;
+				case SmartEnemy:
+					if(this.getBounds().intersects(tempObject.getBounds()))HUD.HEALTH -=2;					
+					break;	
+				case BossEnemy:
+					if(this.getBounds().intersects(tempObject.getBounds()))HUD.HEALTH -=50;					
+					break;
+				case BossEnemyBullets:
+					if(this.getBounds().intersects(tempObject.getBounds()))HUD.HEALTH -=1;					
+					break;
+				default:
+					HUD.HEALTH -= 0;
+					
+					break;
 		}
-	}
-
-	@Override
-	public void render(Graphics g) {
-		g.setColor(Color.white);
-		g.fillRect(x, y, this.enemySize, this.enemySize);
-	}
-
-	@Override
-	public Rectangle getBounds() {	
-		return new Rectangle(this.x,this.y, this.enemySize, this.enemySize);
-	}
+ 	}
+}
 	
+	
+	//Crear cuadrado
+	public void render(Graphics g) {
+		g.setColor(new Color(156, 49, 255));
+		g.fillRect((int)x, (int)y, 32, 32);
+	}
 }
