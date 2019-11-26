@@ -80,7 +80,7 @@ public class Menu extends MouseAdapter {
 		//Play Button
 		
 			g.setFont(font);
-			g.setColor(Color.magenta);
+			g.setColor(new Color(144,185,232));
 			g.drawString("Jugar", 475, 380);
 			
 			g.setColor(Color.white);
@@ -89,7 +89,7 @@ public class Menu extends MouseAdapter {
 		//Credits Button
 		
 			g.setFont(font);
-			g.setColor(Color.cyan);
+			g.setColor(new Color(140,164,255));
 			g.drawString("Creditos", 435, 530);
 			
 			
@@ -112,19 +112,19 @@ public class Menu extends MouseAdapter {
 				g.drawString("You Lost. Score: " + hud.getLevel(), 120, 230);
 				
 				g.setFont(new Font("arial", 1, 50));	
-				g.setColor(Color.cyan);
+				g.setColor(new Color(140,164,255));
 				g.drawString("RETRY", 440, 470);
 				
 				g.setColor(Color.white);
 				g.drawRect(390, 400, 300, 100);
 					
 		}else if(game.gameState == Game.STATE.Credits) {
-			g.setFont(new Font("arial", 1, 90));	
-			g.setColor(Color.pink);
-			g.drawString("Created By Jorge S.", 120, 230);
+			g.setFont(new Font("arial", 1, 60));	
+			g.setColor(new Color(232,121,228));
+			g.drawString("Created By JorgAndr Studios.", 120, 230);
 			
 			g.setFont(new Font("arial", 1, 50));	
-			g.setColor(Color.cyan);
+			g.setColor(new Color(140,164,255));
 			g.drawString("RETURN", 440, 470);
 			
 			g.setColor(Color.white);

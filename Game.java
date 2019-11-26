@@ -169,7 +169,7 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(final String[] args) {
         new Game();
-        String filePath = "hitch.wav";
+        String filePath = "./hitch.wav";
         music = new Music();
         music.playMusic(filePath);
     }
