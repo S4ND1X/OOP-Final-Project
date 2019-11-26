@@ -12,7 +12,7 @@ public class Game extends Canvas implements Runnable {
 
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 1080, HEIGHT = WIDTH / 12 * 9;
 
     private Thread thread;
     private boolean running = false;
@@ -20,21 +20,40 @@ public class Game extends Canvas implements Runnable {
     private Handler handler;
     private HUD hud;
     private Spawn spawner;
+    private Menu menu;
 
     private Random rand = new Random();
+    
+    
+    //Estados de la aplicacion
+	public enum STATE{
+		Menu,
+		Credits,
+		End,
+		Game
+	};
+    
+    public STATE gameState = STATE.Menu;
+    
 
     public Game() {
         handler = new Handler();
-        hud = new HUD();
+        hud = new HUD();        
+        menu = new Menu(this, handler, hud);
+		this.addKeyListener(new KeyInput(handler));
+		this.addMouseListener(menu);
+        
       
         spawner = new Spawn(handler, hud);
 
         this.addKeyListener((KeyListener) new KeyInput(handler));
         new Window(WIDTH, HEIGHT, "CrackHead", this);
+        if(gameState == STATE.Game) {
+	        //*Players and First Enemies 
+	        handler.addObject(new Player(WIDTH / 2, HEIGHT / 2, ID.Player, handler));
+	        handler.addObject(new Dummy(2000,2000,ID.Dummy, handler));
+        }
 
-        //*Players and First Enemies 
-        handler.addObject(new Player(WIDTH / 2, HEIGHT / 2, ID.Player, handler));
-        handler.addObject(new Dummy(2000,2000,ID.Dummy, handler));
     }
 
     public synchronized void start() {
@@ -84,31 +103,54 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        handler.tick();
-            hud.tick();
-            spawner.tick();
-
-            if (hud.HEALTH <= 0) {
-                hud.HEALTH = 100;
-                handler.object.clear();
-            }
+    	//Administrador de objetos
+		handler.tick();
+		
+		//Si esta en estado de juego se actualizan los componentes del juego
+		if(gameState == STATE.Game) {
+			//Actualizar los enemigos			
+			spawner.tick();
+			//Actualizar el hud
+			hud.tick();
+			if(HUD.HEALTH <= 0) {
+				HUD.HEALTH = 100;
+				
+				gameState = STATE.End;
+				handler.clearEnemies();
+			}
+		}else if(gameState == STATE.Menu) {
+			menu.tick();
+			
+		}
+    			
     }
 
     private void render() {
-        final BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null) {
-            this.createBufferStrategy(3);
-            return;
-        }
-
-        final Graphics g = bs.getDrawGraphics();
-        g.setColor(new Color(49,64,87));
-        g.fillRect(0, 0, WIDTH, HEIGHT);
-        handler.render(g);
-
-        hud.render(g);
-        g.dispose();
-        bs.show();
+    	BufferStrategy bs = this.getBufferStrategy();
+		if(bs == null){
+			this.createBufferStrategy(3);
+			return;
+		}
+		//Poder dibujar
+		Graphics g = bs.getDrawGraphics();
+		
+		//Dibujar el tablero encima del Jframe	 
+		g.setColor(new Color(49, 64, 87));
+		g.fillRect(0, 0, WIDTH, HEIGHT );
+		
+		//Renderizar los objetos
+		handler.render(g);
+		//Si esta en estado de juego se crea un juego si no es el menu
+		if(gameState == STATE.Game) {
+			//Renderizar el HUD 
+			hud.render(g);
+		}else if(gameState == STATE.Menu || gameState == STATE.Credits || gameState == STATE.End) {
+			menu.render(g);
+		}
+		
+		
+		g.dispose();
+		bs.show();
     }
 
     public static int clamp(int var, int min, int max) {
