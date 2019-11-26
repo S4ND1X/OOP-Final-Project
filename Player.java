@@ -1,4 +1,7 @@
-
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -54,18 +57,26 @@ public class Player extends GameObject {
                     if(getBounds().intersects(tempObject.getBounds())){
                         HUD.HEALTH -= 4;
                         handler.removeObject(tempObject);
+                        this.setColorHit();
                     }
             }
             if (tempObject.getID() == ID.FatEnemy) {
                 if(getBounds().intersects(tempObject.getBounds())){
                     HUD.HEALTH -= 8;
                     handler.removeObject(tempObject);
+                    this.setColorHit();
                 }
             }
-            if (tempObject.getID() == ID.Boss1 || tempObject.getID() == ID.WeakBoss) {
+            if (tempObject.getID() == ID.Boss1 || tempObject.getID() == ID.WeakBoss || tempObject.getID() == ID.Boss1) {
                 if(getBounds().intersects(tempObject.getBounds())) 
                     HUD.HEALTH -= 100;
             }
+            if (tempObject.getID() == ID.FastBoss) {
+                if(getBounds().intersects(tempObject.getBounds())) 
+                    HUD.HEALTH -= 10;
+                	this.setColorHit();
+            }
+            
             if (tempObject.getID() == ID.HealthToken) {
                 if(getBounds().intersects(tempObject.getBounds())){
                     HUD.HEALTH += 5;
@@ -109,7 +120,6 @@ public class Player extends GameObject {
 			r=(int) (r*1.05>255 ? 255: r*1.05);
 			g=(int) (g*1.05>255 ? 255: g*1.05);
 			b=(int) (b*1.05>255 ? 255: b*1.05);
-			System.out.println(r + " " + g + " " + b);
 			this.color = new Color(r,g,b);
 		}
 		

@@ -1,10 +1,13 @@
+
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
+
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
 import java.util.Random;
-
-
-
 public class PlayerBullet extends GameObject {
 
     private Handler handler;
@@ -52,6 +55,12 @@ public class PlayerBullet extends GameObject {
                     tempObject.setColorHit();
                     handler.removeObject(this);
                 }
+    		}else if(tempObject.getID() == ID.FastBoss) {
+    			if(getBounds().intersects(tempObject.getBounds())) {
+    				tempObject.setHealth(tempObject.getHealth() - 10);
+    				tempObject.setColorHit();
+    				handler.removeObject(this);
+    			}
     		}
 
     	}

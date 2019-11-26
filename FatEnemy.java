@@ -3,7 +3,10 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 public class FatEnemy extends GameObject {
 
     private Handler handler;

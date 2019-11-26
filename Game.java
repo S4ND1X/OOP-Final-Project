@@ -1,3 +1,7 @@
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.event.MouseListener;
@@ -21,6 +25,7 @@ public class Game extends Canvas implements Runnable {
     private HUD hud;
     private Spawn spawner;
     private Menu menu;
+    private static Music music;
 
     private Random rand = new Random();
     
@@ -164,5 +169,8 @@ public class Game extends Canvas implements Runnable {
 
     public static void main(final String[] args) {
         new Game();
+        String filePath = "hitch.wav";
+        music = new Music();
+        music.playMusic(filePath);
     }
 }

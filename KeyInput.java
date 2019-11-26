@@ -1,4 +1,7 @@
-
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -28,7 +31,7 @@ public class KeyInput extends KeyAdapter {
                 if (key == KeyEvent.VK_S) { tempObject.setVelY(5); KeyDown[1] = true; }
                 if (key == KeyEvent.VK_D) { tempObject.setVelX(5); KeyDown[2] = true; }
                 if (key == KeyEvent.VK_A) { tempObject.setVelX(-5); KeyDown[3] = true; }
-                if (key == KeyEvent.VK_UP) {
+                if (key == KeyEvent.VK_SPACE) {
                 	tempObject.setShooting(1);
                 }
             }
@@ -49,7 +52,7 @@ public class KeyInput extends KeyAdapter {
                 if (key == KeyEvent.VK_S) KeyDown[1] = false;
                 if (key == KeyEvent.VK_D) KeyDown[2] = false;
                 if (key == KeyEvent.VK_A) KeyDown[3] = false;
-                if (key == KeyEvent.VK_UP) tempObject.setShooting(0); 
+                if (key == KeyEvent.VK_SPACE) tempObject.setShooting(0); 
 
                 //Vertical movement
                 if(!KeyDown[0] && !KeyDown[1]) tempObject.setVelY(0);

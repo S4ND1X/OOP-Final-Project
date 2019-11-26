@@ -7,19 +7,18 @@ import java.awt.Color;
 import java.awt.Rectangle;
 
 
-public class FastEnemy extends GameObject {
+public class FastBoss extends GameObject {
 
     private Handler handler;
 
-    public FastEnemy(int x, int y, ID id, Handler handler){
+    public FastBoss(int x, int y, ID id, Handler handler){
         super(x, y, id);
-
         this.handler = handler;
-
-        velX = 2; 
+        velX = 9; 
         velY = 9;
+        this.health = 3;
         
-        this.color = new Color(255,233,181);
+        this.color = new Color(153,232,231);
     }
 
     @Override
@@ -29,27 +28,25 @@ public class FastEnemy extends GameObject {
 
         if (y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;
         if (x <= 0 || x >= Game.WIDTH - 32) velX *= -1;
-
+        
     }
 
     @Override
     public void render(Graphics g) {
         g.setColor(color);
-        g.fillRect(x, y, 16, 16);
+        g.fillRect(x, y, 32, 32);
     }
 
     @Override
     public Rectangle getBounds(){
-        return new Rectangle(x,y,16,16);
+        return new Rectangle(x,y,32,32);
     }
+
+
 
 	@Override
 	public void setColorHit() {
-		int r = this.color.getRed(),g = this.getColor().getGreen(), b = this.getColor().getBlue();
-		r*=0.95;
-		g*=0.95;
-		b*=0.95;
-		this.color = new Color(r,g,b);
+		// TODO Auto-generated method stub
 		
 	}
 

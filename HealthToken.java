@@ -1,4 +1,7 @@
-
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -20,7 +23,7 @@ public class HealthToken extends GameObject {
         velX = 0; 
         velY = 3;
         
-        this.color = new Color(235,78,153);
+        this.color = new Color(138,255,154);
     }
 
     @Override
@@ -39,8 +42,10 @@ public class HealthToken extends GameObject {
 
     @Override
     public void render(Graphics g) {
+    	int[] xP = {x,x+10,x+20,x+30,x+10, x-10};
+    	int[] yP = {y, y+10, y, y+15,y+20,y+15};
         g.setColor(color);
-        g.drawArc(x, y, 10, 20, 0, 180);
+        g.fillPolygon(xP, yP,4);
     }
 
     @Override

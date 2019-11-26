@@ -1,4 +1,7 @@
-
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
@@ -40,5 +43,17 @@ public class BulletBoss1 extends GameObject {
     public Rectangle getBounds(){
         return new Rectangle(x,y,16,16);
     }
+
+	@Override
+	public void setColorHit() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setColorHealed() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

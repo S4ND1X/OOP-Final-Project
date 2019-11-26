@@ -1,4 +1,7 @@
-
+/*Programa Realizado por 
+ * Jorge Sanchez Diaz A01635375
+ * Andres Diaz De Leon A01620020
+*/
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
